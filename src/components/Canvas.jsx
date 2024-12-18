@@ -44,7 +44,7 @@ const Canvas = ({ dets }) => {
       data-scroll-speed={
         Math.random().toFixed(1)
       }
-      className="absolute"
+      className={`absolute z-${zIndex}`}
       style={{
         width: `${size * 1.4}px`,
         height: `${size * 1.4}px`,
