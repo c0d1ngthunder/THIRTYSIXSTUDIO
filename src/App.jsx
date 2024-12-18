@@ -8,13 +8,13 @@ import Page2 from "./components/Page2";
 import gsap from "gsap";
 
 const App = () => {
-  const [animateSpan, setAnimateSpan] = useState(false);
-  const growingspan = useRef(null);
+  const [isMaximized, setIsMaximized] = useState(false);
   const [showCanvas, setShowCanvas] = useState(false);
-  const [event,setEvent] = useState({})
+  const growingspan = useRef(null);
+  const [event, setEvent] = useState({});
   const handleAnimation = (e) => {
-    setAnimateSpan(true); // Trigger animation
-    setEvent(e)
+    setEvent(e); // Update event details
+    setIsMaximized((prevState) => !prevState); // Toggle maximize/minimize
   };
 
   useEffect(() => {
@@ -22,32 +22,57 @@ const App = () => {
   });
 
   useEffect(() => {
-    if (animateSpan) {
-      // Perform GSAP animation
-      gsap.set(growingspan.current, {
-        top:event.clientY,
-        left: event.clientX,
-        onComplete: () => {
-          gsap.to(growingspan.current,{
-            scale:0,
-            clearProps:"all",
+    if (growingspan.current) {
+      if (isMaximized) {
+        // Maximize span
+
+        setTimeout(() => {
+          gsap.to("body",{
+            color:"black"
           })
-          setAnimateSpan(false)
-        },
-      });
-      setShowCanvas(!showCanvas)
-      gsap.to(growingspan.current,{
-        scale:1000,
-        duration:4,
-        ease:"ease.inout"
-      })
-      // gsap.from()
+        }, 500);
+
+        gsap.set(growingspan.current, {
+          top: event.clientY,
+          left: event.clientX,
+          scale: 0,
+        });
+
+        gsap.to(growingspan.current, {
+          scale: 1000,
+          duration: 1.5, // Adjust animation duration
+          ease: "power3.inOut",
+          onComplete: () => {
+            setShowCanvas(true); 
+          },
+        });
+
+      } else {
+        setTimeout(() => {
+          setShowCanvas(false);
+          gsap.to("body",{
+            color:"white"
+          })
+        }, 500);
+        gsap.to(growingspan.current, {
+          scale: 0,
+          duration: 1, 
+          ease: "power3.out",
+          onComplete: () => {
+            gsap.set(growingspan.current, { clearProps: "all" }); // Clear inline styles
+            
+          },
+        });
+      }
     }
-  }, [animateSpan]);
+  }, [isMaximized, event]);
 
   return (
     <>
-      <span ref={growingspan} className="bg-[#fd2c2a] rounded-full fixed top-0 left-0 w-5 h-5 growing block"></span>
+      <span
+        ref={growingspan}
+        className="bg-[#fd2c2a] rounded-full fixed top-[-20px] left-0 w-5 h-5 growing block"
+      ></span>
       <Navbar />
       <div className="w-full relative h-screen">
         {showCanvas &&
@@ -56,7 +81,7 @@ const App = () => {
           })}
         <TextPage />
       </div>
-      <Page2 onTriggerAnimation={handleAnimation} showCanvas={showCanvas} />
+      <Page2 onTriggerAnimation={handleAnimation} isMaximized={showCanvas} />
     </>
   );
 };
