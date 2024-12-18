@@ -174,7 +174,7 @@ export default [
             duration: 3,
             size: 292,
             top: 56,
-            left: 20,
+            left: 0,
             zIndex: 0,
         },
         {
@@ -192,7 +192,7 @@ export default [
             duration: 3,
             size: 156,
             top: 83,
-            left: 20,
+            left: 80,
             zIndex: 0,
         },
     ],

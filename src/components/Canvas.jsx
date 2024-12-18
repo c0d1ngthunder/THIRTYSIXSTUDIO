@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import canvasimages from "../../canvasimages";
 import gsap from "gsap";
+import LocomotiveScroll from "locomotive-scroll";
 import { useGSAP } from "@gsap/react";
 
 const Canvas = ({ dets }) => {
@@ -39,10 +40,14 @@ const Canvas = ({ dets }) => {
 
   return (
     <canvas
+      data-scroll
+      data-scroll-speed={
+        Math.random().toFixed(1)
+      }
       className="absolute"
       style={{
-        width: `${size * 1.2}px`,
-        height: `${size * 1.2}px`,
+        width: `${size * 1.4}px`,
+        height: `${size * 1.4}px`,
         top: `${top}%`,
         left: `${left}%`,
       }}
