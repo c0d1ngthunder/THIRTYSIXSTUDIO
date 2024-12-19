@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Canvas from "./components/canvas";
+import Canvas from "./components/Canvas";
 import data from "./data";
 import LocomotiveScroll from "locomotive-scroll";
 import Navbar from "./components/Navbar";
