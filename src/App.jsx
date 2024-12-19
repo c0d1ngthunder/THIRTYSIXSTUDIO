@@ -29,9 +29,9 @@ const App = () => {
         // Maximize span
 
         setTimeout(() => {
-          gsap.to("body",{
-            color:"black"
-          })
+          gsap.to("body", {
+            color: "black",
+          });
         }, 500);
 
         gsap.set(growingspan.current, {
@@ -45,24 +45,22 @@ const App = () => {
           duration: 1.5, // Adjust animation duration
           ease: "power3.inOut",
           onComplete: () => {
-            setShowCanvas(true); 
+            setShowCanvas(true);
           },
         });
-
       } else {
         setTimeout(() => {
           setShowCanvas(false);
-          gsap.to("body",{
-            color:"white"
-          })
+          gsap.to("body", {
+            color: "white",
+          });
         }, 500);
         gsap.to(growingspan.current, {
           scale: 0,
-          duration: 1, 
+          duration: 1,
           ease: "power3.out",
           onComplete: () => {
             gsap.set(growingspan.current, { clearProps: "all" }); // Clear inline styles
-            
           },
         });
       }
@@ -71,7 +69,7 @@ const App = () => {
 
   return (
     <>
-    <Cursor/>
+      <Cursor />
       <span
         ref={growingspan}
         className="bg-[#fd2c2a] rounded-full fixed top-[-20px] left-0 w-5 h-5 growing block"
@@ -85,7 +83,13 @@ const App = () => {
         <TextPage />
       </div>
       <Page2 onTriggerAnimation={handleAnimation} isMaximized={showCanvas} />
-      <Services showCanvas={showCanvas}/>
+      <div className="relative">
+      {showCanvas &&
+        data[2].map((cdata, cidx) => {
+          return <Canvas key={cidx} dets={cdata} />;
+        })}
+        <Services showCanvas={showCanvas} />
+      </div>
     </>
   );
 };

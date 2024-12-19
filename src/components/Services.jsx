@@ -5,10 +5,7 @@ import Canvas from "./Canvas";
 const Services = (showCanvas) => {
   return (
     <div className="services w-[99%] border-t-[1px] relative z-[0] m-auto">
-      {showCanvas &&
-        data[2].map((cdata, cidx) => {
-          return <Canvas key={cidx} dets={cdata} />;
-        })}
+      
       <div className="w-[50%] m-auto">
         <h3 className="my-20 ">OUR SERVICES</h3>
         <p className="text-3xl">
