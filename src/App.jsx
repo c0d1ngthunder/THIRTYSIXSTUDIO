@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import TextPage from "./components/TextPage";
 import Page2 from "./components/Page2";
 import gsap from "gsap";
+import Cursor from "./components/Cursor";
+import Services from "./components/Services";
 
 const App = () => {
   const [isMaximized, setIsMaximized] = useState(false);
@@ -69,12 +71,13 @@ const App = () => {
 
   return (
     <>
+    <Cursor/>
       <span
         ref={growingspan}
         className="bg-[#fd2c2a] rounded-full fixed top-[-20px] left-0 w-5 h-5 growing block"
       ></span>
       <Navbar />
-      <div className="w-full relative h-screen">
+      <div className="w-full relative min-h-screen">
         {showCanvas &&
           data[0].map((cdata, cidx) => {
             return <Canvas key={cidx} dets={cdata} />;
@@ -82,6 +85,7 @@ const App = () => {
         <TextPage />
       </div>
       <Page2 onTriggerAnimation={handleAnimation} isMaximized={showCanvas} />
+      <Services showCanvas={showCanvas}/>
     </>
   );
 };
