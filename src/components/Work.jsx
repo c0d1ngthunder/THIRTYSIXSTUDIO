@@ -9,15 +9,15 @@ const Work = () => {
         </h5>
       </div>
       <div id="work-para" className="text-3xl w-[40%]">
-        <p className="w-[55%]">
+        <p className="para w-[55%]">
           We aim to revolutionize digital production in the advertising space,
           bringing your ideas to life.
         </p>
-        <p className="text-sm mt-40 w-[60%]">
+        <p className="para text-sm mt-40 w-[60%]">
           As a contemporary studio, we use cutting-edge design practices and the
           latest technologies to deliver seamless digital work.
         </p>
-        <p className="text-sm w-[60%] mt-10">
+        <p className="para text-sm w-[60%] mt-10">
           Our commitment to creativity, innovation, and simplicity, paired with
           our agile approach, ensures your journey with us is smooth and
           enjoyable from start to finish.

@@ -9,6 +9,7 @@ const Navbar = () => {
             {["What we do","Who we are","How we give back","Talk to us"].map((link,idx)=>
               <a className="transition-all relative text-normal" key={idx} href={`#${link.toLowerCase()}`}>{link}</a>
             )}
+            <span className="hidden show">Menu</span>
           </div>
         </nav>
       </div>
