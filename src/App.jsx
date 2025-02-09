@@ -14,10 +14,14 @@ const App = () => {
   const [showCanvas, setShowCanvas] = useState(false);
   const growingspan = useRef(null);
   const [event, setEvent] = useState({});
+  const audio1 = new Audio('/THIRTYSIXSTUDIO/media/world1.mp3');
+  const audio2 = new Audio('/THIRTYSIXSTUDIO/media/world2.mp3');
+
   const handleAnimation = (e) => {
     setEvent(e); // Update event details
     setIsMaximized((prevState) => !prevState); // Toggle maximize/minimize
   };
+
 
   useEffect(() => {
     const locomotiveScroll = new LocomotiveScroll();
@@ -66,6 +70,20 @@ const App = () => {
       }
     }
   }, [isMaximized, event]);
+
+  useEffect(()=>{
+    window.addEventListener('click',(e)=>{
+    if (showCanvas){
+      audio2.pause()
+      audio1.play();
+
+    }else{
+      audio1.pause();
+      audio2.play();
+    }
+    })
+  },[showCanvas])
+
 
   return (
     <>
